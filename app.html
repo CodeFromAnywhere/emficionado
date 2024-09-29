@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emficionado - Passion-Driven Work</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .rainbow-bg {
+            background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #8b00ff);
+            background-size: 600% 600%;
+            animation: rainbow 20s ease infinite;
+        }
+
+        @keyframes rainbow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+    <header class="rainbow-bg text-white py-6">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl font-bold">Emficionado</h1>
+            <p class="text-xl mt-2">Passion-Driven Work Revolution</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-4">Reimagining Work</h2>
+            <p class="text-lg mb-4">Emficionado is more than a platform; it's a philosophy that combines passion and
+                employment, creating a new paradigm for work.</p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Traditional Freelancing</h3>
+                    <ul class="list-disc pl-5">
+                        <li>Project-based work</li>
+                        <li>Bidding for jobs</li>
+                        <li>Often misaligned with passion</li>
+                        <li>Manual job searching</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Emficionado Model</h3>
+                    <ul class="list-disc pl-5">
+                        <li>Passion-driven work</li>
+                        <li>Automatic work sharing</li>
+                        <li>Aligned with personal interests</li>
+                        <li>AI-powered matching</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-4">How It Works</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <i class="fas fa-code-branch text-4xl mb-4 text-blue-500"></i>
+                    <h3 class="text-xl font-bold mb-2">1. Track Your Work</h3>
+                    <p>Our AI agent monitors your GitHub activities to understand your passions and skills.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <i class="fas fa-network-wired text-4xl mb-4 text-green-500"></i>
+                    <h3 class="text-xl font-bold mb-2">2. Build Your Network</h3>
+                    <p>We find people and companies with similar passions and establish connections.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <i class="fas fa-share-alt text-4xl mb-4 text-purple-500"></i>
+                    <h3 class="text-xl font-bold mb-2">3. Share Your Work</h3>
+                    <p>Automatically share your most interesting work with your network, including payment requests.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-3xl font-bold mb-4">Join the Revolution</h2>
+            <p class="text-lg mb-4">Ready to work on what you love and get paid for it? Join Emficionado today!</p>
+            <button id="joinBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                Join Now
+            </button>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-4 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2023 Emficionado. All rights reserved.</p>
+            <button id="shareBtn" class="mt-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded">
+                <i class="fab fa-twitter mr-1"></i> Share
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        // Store and retrieve API management URL from localStorage
+        const apiUrlInput = document.createElement('input');
+        apiUrlInput.type = 'text';
+        apiUrlInput.placeholder = 'Enter API management URL';
+        apiUrlInput.value = localStorage.getItem('apiManagementUrl') || '';
+        apiUrlInput.addEventListener('change', (e) => {
+            localStorage.setItem('apiManagementUrl', e.target.value);
+            updateApiLink();
+        });
+
+        const settingsBtn = document.createElement('button');
+        settingsBtn.textContent = 'Settings';
+        settingsBtn.className = 'bg-gray-500 hover:bg-gray-600 text-white font-bold py-1 px-2 rounded ml-2';
+        settingsBtn.addEventListener('click', () => {
+            const dialog = document.createElement('dialog');
+            dialog.appendChild(apiUrlInput);
+            const closeBtn = document.createElement('button');
+            closeBtn.textContent = 'Close';
+            closeBtn.className = 'bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded ml-2';
+            closeBtn.addEventListener('click', () => dialog.close());
+            dialog.appendChild(closeBtn);
+            document.body.appendChild(dialog);
+            dialog.showModal();
+        });
+
+        document.querySelector('footer div').appendChild(settingsBtn);
+
+        function updateApiLink() {
+            const apiUrl = localStorage.getItem('apiManagementUrl');
+            const existingLink = document.getElementById('apiLink');
+            if (apiUrl && !existingLink) {
+                const link = document.createElement('a');
+                link.id = 'apiLink';
+                link.href = apiUrl;
+                link.target = '_blank';
+                link.textContent = 'Open API Management';
+                link.className = 'text-blue-300 hover:text-blue-100 ml-4';
+                document.querySelector('footer div').appendChild(link);
+            } else if (!apiUrl && existingLink) {
+                existingLink.remove();
+            }
+        }
+
+        updateApiLink();
+
+        // Share button functionality
+        document.getElementById('shareBtn').addEventListener('click', () => {
+            const text = "Check out Emficionado - a revolutionary platform for passion-driven work!";
+            const url = window.location.href;
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+        });
+
+        // Join button functionality with loading indicator
+        document.getElementById('joinBtn').addEventListener('click', (e) => {
+            const btn = e.target;
+            const originalText = btn.textContent;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Joining...';
+            btn.disabled = true;
+
+            // Simulating an API call
+            setTimeout(() => {
+                btn.textContent = 'Joined!';
+                btn.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+                btn.classList.add('bg-green-500');
+            }, 2000);
+        });
+    </script>
+</body>
+
+</html>
