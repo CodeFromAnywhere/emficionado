@@ -28,6 +28,8 @@ My problem is that I am not sharing my work as it's a lot of work to share, and 
 
 A potential roadmap could look like this:
 
-1. as all my work passes github, create an agent that tracks my activities there and sees what I'm working on, and is able to comprehend this
+1. as all my work passes github, create an agent that tracks my activities there and sees what I'm working on, and is able to comprehend this.
 2. scrape a network of people with shared passion. first extract historical passion from my github activities, then extrapolate on each micropassion by running continuous search agents for them to find people and companies with similar passions. for each contact, find a channel of communication too.
 3. establish a connection and share interesting work with them in a spread-out way (max 1 mail per month) that highlights the most interesting work with any of them. invite them for conversations about it and rfp.
+
+Posted on X: https://x.com/WKarsens/status/1840309924036751558

@@ -1,0 +1,1 @@
+npx wrangler deploy --name emficionado --compatibility-date 2024-09-27 index.ts
